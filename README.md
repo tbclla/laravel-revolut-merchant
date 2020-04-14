@@ -2,6 +2,7 @@
 
 [![Latest Stable Version](https://poser.pugx.org/tbclla/laravel-revolut-merchant/v/stable)](https://packagist.org/packages/tbclla/laravel-revolut-merchant)
 [![License](https://poser.pugx.org/tbclla/laravel-revolut-merchant/license)](https://packagist.org/packages/tbclla/laravel-revolut-merchant)
+[![Build Status](https://travis-ci.com/tbclla/laravel-revolut-merchant.svg?branch=master)](https://travis-ci.com/tbclla/laravel-revolut-merchant)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/tbclla/laravel-revolut-merchant/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/tbclla/laravel-revolut-merchant/?branch=master)
 
 # Laravel-Revolut (Merchant)
