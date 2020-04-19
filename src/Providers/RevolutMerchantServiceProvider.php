@@ -15,6 +15,10 @@ class RevolutMerchantServiceProvider extends ServiceProvider
 	 */
 	public function register()
 	{
+		$this->mergeConfigFrom(
+			__DIR__ . '/../config/revolut-merchant.php', 'revolut-merchant'
+		);
+
 		$this->app->singleton(Client::class, function() {
 			return resolve('merchant');
 		});
