@@ -15,11 +15,15 @@ class RevolutMerchantServiceProvider extends ServiceProvider
 	 */
 	public function register()
 	{
+		$this->app->singleton(Client::class, function() {
+			return resolve('merchant');
+		});
+
 		$this->app->singleton('merchant', function() {
 			return new Client(
 				config('revolut-merchant.api_key'),
 				config('revolut-merchant.sandbox', true)
-			);
+			);;
 		});
 	}
 

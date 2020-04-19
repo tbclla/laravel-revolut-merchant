@@ -8,13 +8,27 @@ use tbclla\RevolutMerchant\Resources\Order;
 
 class OrderApiTest extends TestCase
 {
+    protected function getPackageProviders($app)
+    {
+        return ['tbclla\RevolutMerchant\Providers\RevolutMerchantServiceProvider'];
+    }
+
+    /**
+     * Define environment setup.
+     *
+     * @param  \Illuminate\Foundation\Application  $app
+     * @return void
+     */
+    protected function getEnvironmentSetUp($app)
+    {
+        $app['config']->set('revolut-merchant.api_key', env('REVOLUT_MERCHANT_API_KEY'));
+    }
+
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->client = new Client('aUlJUaOlSTUy9Wi3As0GfpHXyToXIWeT0bgg0P4u8aV5JN_lezSuYpjG6EB97381', true);
-
-        $this->order = new Order($this->client);
+        $this->order = new Order(resolve(Client::class));
     }
 
     /** @test */
