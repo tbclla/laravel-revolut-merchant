@@ -55,13 +55,23 @@ class Client
 	private $httpClient;
 
 	/**
+	 * Whether or not to use the sandbox environment
+	 *
+	 * @var bool
+	 */
+	private $sandbox;
+
+	/**
 	 * Create a new client
 	 *
 	 * @param string $apiKey
+	 * @param bool $sandbox
+	 * @return void
 	 */
-	public function __construct(string $apiKey)
+	public function __construct(string $apiKey, bool $sandbox = false)
 	{
 		$this->apiKey = $apiKey;
+		$this->sandbox = $sandbox;
 		$this->httpClient = new GuzzleClient();
 	}
 
@@ -131,13 +141,11 @@ class Client
 	 *
 	 * @return string
 	 */
-	public static function baseUri()
+	public function baseUri()
 	{
-		$url = config('revolut-merchant.sandbox', true)
-			? self::SANDBOX_URL
-			: self::PRODUCTION_URL;
+		$url = $this->sandbox ? self::SANDBOX_URL : self::PRODUCTION_URL;
 
-		return $url . self::ApiUri();
+		return $url . $this->ApiUri();
 	}
 
 	/**
