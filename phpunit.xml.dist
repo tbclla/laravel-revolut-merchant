@@ -16,7 +16,4 @@
             <directory suffix=".php">./src</directory>
         </whitelist>
     </filter>
-	 <php>
-        <env name="REVOLUT_MERCHANT_API_KEY" value="aUlJUaOlSTUy9Wi3As0GfpHXyToXIWeT0bgg0P4u8aV5JN_lezSuYpjG6EB97381xxx"/>
-	</php>
 </phpunit>
