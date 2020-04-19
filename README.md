@@ -45,13 +45,14 @@ If you have disabled auto-discovery, add the service provider and facade to your
 ]
 ```
 
-#### Configuration
+#### Publish the configuration (optional)
 
-Publish the configuration to your app's config directory.
-
+If you would like to publish this package's configuration to your own config directory, use the below artisan command.<br>
 ```
 php artisan vendor:publish --provider "tbclla\RevolutMerchant\Providers\RevolutMerchantServiceProvider"
 ```
+
+#### Set environment variables
 
 Add the following keys to your project's `.env` file, as all of the configuration values are read from there.<br>
 ❗Complete the `REVOLUT_MERCHANT_API_KEY` with the API key from your merchant account.
@@ -65,17 +66,19 @@ That's it, you're all done.
 
 ## How to use this package
 
-To use the client, you can either instantiate a new `tbclla\RevolutMerchant\Client` and pass it your API key as the sole parameter:
+To use the client, you can either instantiate a new `tbclla\RevolutMerchant\Client` which accepts your API key, and whether or not to run in sandbox mode:
 
 ```php
 use tbclla\RevolutMerchant\Client;
-
-$merchant = new Client('your_revolut_merchant_api_key');
+// sandbox
+$merchant = new Client('your_api_key', true);
+// production
+$merchant = new Client('your_api_key');
 
 $merchant->order()->get($orderId);
 ```
 
-Or you can use the facade, which will set the API key for you.<br>
+Or you can use the facade, which will inject your environment values.<br>
 For brevity, all of the examples in this documentation are using the facade.
 
 ```php
