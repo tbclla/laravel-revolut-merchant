@@ -1,26 +1,26 @@
 {
-	"name": "tbclla/laravel-revolut-merchant",
-	"description": "An unoffial Laravel wrapper for Revolut's Merchant API",
-	"license": "MIT",
-	"require": {
-		"guzzlehttp/guzzle": "^6.5"
-	},
-	"autoload": {
-		"psr-4": {
-			"tbclla\\RevolutMerchant\\": "src/"
-		}
-	},
-	"extra": {
-		"laravel": {
-			"providers": [
-				"tbclla\\RevolutMerchant\\Providers\\RevolutMerchantServiceProvider"
-			],
-			"aliases": {
-				"Merchant": "tbclla\\RevolutMerchant\\Facades\\Merchant"
-			}
-		}
-	},
-	"require-dev": {
-		"orchestra/testbench": "^5.1"
-	}
+    "name": "tbclla/laravel-revolut-merchant",
+    "description": "An unoffial Laravel wrapper for Revolut's Merchant API",
+    "license": "MIT",
+    "require": {
+        "guzzlehttp/guzzle": "^6.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "tbclla\\RevolutMerchant\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "tbclla\\RevolutMerchant\\Providers\\RevolutMerchantServiceProvider"
+            ],
+            "aliases": {
+                "Merchant": "tbclla\\RevolutMerchant\\Facades\\Merchant"
+            }
+        }
+    },
+    "require-dev": {
+        "orchestra/testbench": "^5.1"
+    }
 }

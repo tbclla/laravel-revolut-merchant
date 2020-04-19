@@ -9,76 +9,76 @@ use tbclla\RevolutMerchant\Resources\Resource;
 
 class OrderTest extends TestCase
 {
-	protected function setUp() : void
-	{
-		parent::setUp();
-		$this->mockClient = $this->mock(Client::class);
-	}
+    protected function setUp() : void
+    {
+        parent::setUp();
+        $this->mockClient = $this->mock(Client::class);
+    }
 
-	/** @test */
-	public function the_client_can_return_an_order_resource()
-	{
-		$client = new Client('example_key');
-		$order = $client->order();
+    /** @test */
+    public function the_client_can_return_an_order_resource()
+    {
+        $client = new Client('example_key');
+        $order = $client->order();
 
-		$this->assertInstanceOf(Order::class, $order);
-		$this->assertInstanceOf(Resource::class, $order);
-	}
+        $this->assertInstanceOf(Order::class, $order);
+        $this->assertInstanceOf(Resource::class, $order);
+    }
 
-	/** @test */
-	public function orders_can_be_created()
-	{
-		$this->mockClient->shouldReceive()->post(Order::ENDPOINT, [
-			'json' => []
-		]);
+    /** @test */
+    public function orders_can_be_created()
+    {
+        $this->mockClient->shouldReceive()->post(Order::ENDPOINT, [
+            'json' => []
+        ]);
 
-		$order = new Order($this->mockClient);
-		$order->create([]);
-	}
+        $order = new Order($this->mockClient);
+        $order->create([]);
+    }
 
-	/** @test */
-	public function an_order_can_be_retrieved()
-	{
-		$id = 'abc123';
+    /** @test */
+    public function an_order_can_be_retrieved()
+    {
+        $id = 'abc123';
 
-		$this->mockClient->shouldReceive()->get(Order::ENDPOINT . '/' . $id);
+        $this->mockClient->shouldReceive()->get(Order::ENDPOINT . '/' . $id);
 
-		$order = new Order($this->mockClient);
-		$order->get($id);
-	}
+        $order = new Order($this->mockClient);
+        $order->get($id);
+    }
 
-	/** @test */
-	public function an_order_can_be_captured()
-	{
-		$id = 'abc123';
+    /** @test */
+    public function an_order_can_be_captured()
+    {
+        $id = 'abc123';
 
-		$this->mockClient->shouldReceive()->post(Order::ENDPOINT . '/' . $id . '/capture');
+        $this->mockClient->shouldReceive()->post(Order::ENDPOINT . '/' . $id . '/capture');
 
-		$order = new Order($this->mockClient);
-		$order->capture($id);
-	}
+        $order = new Order($this->mockClient);
+        $order->capture($id);
+    }
 
-	/** @test */
-	public function an_order_can_be_cancelled()
-	{
-		$id = 'abc123';
+    /** @test */
+    public function an_order_can_be_cancelled()
+    {
+        $id = 'abc123';
 
-		$this->mockClient->shouldReceive()->post(Order::ENDPOINT . '/' . $id . '/cancel');
+        $this->mockClient->shouldReceive()->post(Order::ENDPOINT . '/' . $id . '/cancel');
 
-		$order = new Order($this->mockClient);
-		$order->cancel($id);
-	}
+        $order = new Order($this->mockClient);
+        $order->cancel($id);
+    }
 
-	/** @test */
-	public function an_order_can_be_refunded()
-	{
-		$id = 'abc123';
+    /** @test */
+    public function an_order_can_be_refunded()
+    {
+        $id = 'abc123';
 
-		$this->mockClient->shouldReceive()->post(Order::ENDPOINT . '/' . $id . '/refund', [
-			'json' => []
-		]);
+        $this->mockClient->shouldReceive()->post(Order::ENDPOINT . '/' . $id . '/refund', [
+            'json' => []
+        ]);
 
-		$order = new Order($this->mockClient);
-		$order->refund($id, []);
-	}
+        $order = new Order($this->mockClient);
+        $order->refund($id, []);
+    }
 }

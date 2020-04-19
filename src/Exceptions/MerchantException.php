@@ -4,6 +4,4 @@ namespace tbclla\RevolutMerchant\Exceptions;
 
 use Exception;
 
-class MerchantException extends Exception
-{
-}
+class MerchantException extends Exception {}

@@ -35,13 +35,13 @@ If you have disabled auto-discovery, add the service provider and facade to your
 
 ```php
 'providers' => [
-	// ...
-	tbclla\RevolutMerchant\Providers\RevolutMerchantServiceProvider::class,
+    // ...
+    tbclla\RevolutMerchant\Providers\RevolutMerchantServiceProvider::class,
 ],
 
 'aliases' => [
-	// ...
-	'Merchant' => tbclla\RevolutMerchant\Facades\Merchant::class,
+    // ...
+    'Merchant' => tbclla\RevolutMerchant\Facades\Merchant::class,
 ]
 ```
 
@@ -70,6 +70,7 @@ To use the client, you can either instantiate a new `tbclla\RevolutMerchant\Clie
 
 ```php
 use tbclla\RevolutMerchant\Client;
+
 // sandbox
 $merchant = new Client('your_api_key', true);
 // production
@@ -95,14 +96,14 @@ Please refer to [Revolut's official documentation on orders](https://developer.r
 
 ```php
 Merchant::order()->create([
-	"amount" => 200,
-	"capture_mode" => "MANUAL",
-	"merchant_order_id" => "00122",
-	"customer_email" => "sally.gibson@gmail.com",
-	"description" => "description",
-	"currency" => "GBP",
-	"settlement_currency" => "USD",
-	"merchant_customer_id" => "sally01"
+    "amount" => 200,
+    "capture_mode" => "MANUAL",
+    "merchant_order_id" => "00122",
+    "customer_email" => "sally.gibson@gmail.com",
+    "description" => "description",
+    "currency" => "GBP",
+    "settlement_currency" => "USD",
+    "merchant_customer_id" => "sally01"
 ]);
 ```
 
@@ -130,10 +131,10 @@ Merchant::order()->cancel($orderId);
 
 ```php
 Merchant::order()->refund($orderId, [
-	"amount" => 100,
-	"currency" => "GBP",
-	"merchant_order_id" => "00122",
-	"description" => null
+    "amount" => 100,
+    "currency" => "GBP",
+    "merchant_order_id" => "00122",
+    "description" => null
 ]);
 ```
 
@@ -167,12 +168,12 @@ This package includes a `@revolutMerchantScript` blade directive which will embe
 
 ```html
 <head>
-	<title>Checkout Page</title>
+    <title>Checkout Page</title>
 
-	@revolutMerchantScript
+    @revolutMerchantScript
 </head>
 <body>
-	...
+    ...
 </body>
 ```
 
@@ -187,20 +188,20 @@ The payment order's `public_id` is then returned and passed to `RevolutCheckout(
 
 ```php
 Route::post('/purchase', function() {
-	// Get the logged in user
-	$user = Auth::user();
-	// Fetch the item being purchased
-	$item = Item::find(request('item_id'));
-	// Create a new payment order
-	$paymentOrder = Merchant::order()->create([
-		"currency" => "GBP",
-		"description" => $item->name,
-		"amount" => $item->price,
-		"customer_email" => $user->email,
-		"merchant_customer_id" => $user->id,
-	]);
-	// return the payment order's 'public_id'
-	return $paymentOrder['public_id'];
+    // Get the logged in user
+    $user = Auth::user();
+    // Fetch the item being purchased
+    $item = Item::find(request('item_id'));
+    // Create a new payment order
+    $paymentOrder = Merchant::order()->create([
+        "currency" => "GBP",
+        "description" => $item->name,
+        "amount" => $item->price,
+        "customer_email" => $user->email,
+        "merchant_customer_id" => $user->id,
+    ]);
+    // return the payment order's 'public_id'
+    return $paymentOrder['public_id'];
 });
 ```
 
@@ -211,16 +212,16 @@ Route::post('/purchase', function() {
 ```js
 // the user triggers a request to the above route
 axios.post('/purchase', {"item_id": 123456}).then((response) => {
-	// get the 'public_id' from the response
-	let publicId = response.data;
-	// pass the 'public_id' to RevolutCheckout()
-	RevolutCheckout(publicId).then(function(instance) {
-		// Launch the pop-up
-		instance.payWithPopup({
-			onSuccess() { ... },
-			onError(message) { ... }
-		});
-	});
+    // get the 'public_id' from the response
+    let publicId = response.data;
+    // pass the 'public_id' to RevolutCheckout()
+    RevolutCheckout(publicId).then(function(instance) {
+        // Launch the pop-up
+        instance.payWithPopup({
+            onSuccess() { ... },
+            onError(message) { ... }
+        });
+    });
 });
 ```
 
