@@ -21,7 +21,7 @@ class OrderApiTest extends TestCase
      */
     protected function getEnvironmentSetUp($app)
     {
-        $app['config']->set('revolut-merchant.api_key', env('REVOLUT_MERCHANT_API_KEY'));
+        $app['config']->set('revolut-merchant.api_key', getenv('REVOLUT_MERCHANT_API_KEY'));
     }
 
     protected function setUp(): void
